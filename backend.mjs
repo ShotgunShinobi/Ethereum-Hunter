@@ -18,7 +18,7 @@ const app = express();
 const port = 3000; //Setting the port to 3000
 
 const settings = {
-  apiKey: "0-ZKJ8Tws1DDBJ_kujcQ_cDNjtILfgQx", //API Key should be here
+  apiKey: "", //API Key should be here
   network: Network.ETH_MAINNET, 
 };
 const alchemy = new Alchemy(settings);
