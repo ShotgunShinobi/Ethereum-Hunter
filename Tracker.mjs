@@ -4,7 +4,7 @@ import BigNumber from "bignumber.js";
 import sqlite3 from 'sqlite3'; 
 
 const settings = {
-  apiKey: "0-ZKJ8Tws1DDBJ_kujcQ_cDNjtILfgQx", // Replace with your Alchemy API Key
+  apiKey: "", // Replace with your Alchemy API Key
   network: Network.ETH_MAINNET,
 };
 const alchemy = new Alchemy(settings);
