@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Transaction Tracker</h1>
+
+    <button id="run-tracker">Run Tracker</button>
+
+    <h2>Run Tracer</h2>
+    <form id="tracer-form">
+      <input type="text" name="text" placeholder="Enter transaction hash" required>
+      <button type="submit">Run Tracer</button>
+    </form>
+
+    <div id="output"></div>
+  </div>
+
+  <!-- Modal HTML -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="modal-message"></p>
+    </div>
+  </div>
+
+  <script>
+    // Get modal element and close button
+    const modal = document.getElementById('modal');
+    const modalMessage = document.getElementById('modal-message');
+    const span = document.getElementsByClassName('close')[0];
+
+    // Function to show the modal
+    function showModal(message) {
+      modalMessage.textContent = message;
+      modal.style.display = 'block';
+    }
+
+    // Close the modal when the user clicks on <span> (x)
+    span.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    document.getElementById('run-tracker').addEventListener('click', () => {
+      fetch('/run-tracker')
+        .then(response => response.text())
+        .then(data => {
+          // Show the response in a custom modal
+          showModal(`Tracker Response: ${data}`);
+        });
+    });
+
+    document.getElementById('tracer-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      fetch('/run-tracer', {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('output').innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Transaction Hash</td>
+                <td>${data.hash}</td>
+              </tr>
+              <tr>
+                <td>Block Number</td>
+                <td>${data.blockNumber}</td>
+              </tr>
+              <tr>
+                <td>Block Timestamp</td>
+                <td>${data.blockTimestamp}</td>
+              </tr>
+              <tr>
+                <td>Fee</td>
+                <td>${data.fee} ETH</td>
+              </tr>
+              <tr>
+                <td>Sender Address</td>
+                <td>${data.senderAddress}</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      });
+    });
+  </script>
+</body>
+</html>
