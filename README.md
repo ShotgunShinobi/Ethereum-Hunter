@@ -1,8 +1,8 @@
-# Blockchain Tracker API
+# Ethereum Hunter
 
 ## Overview
 
-The Blockchain Tracker API project sets up an Express server to interact with Ethereum transactions using the Alchemy SDK. It provides endpoints to execute scripts and fetch transaction details from the Ethereum blockchain, including internal transactions. Results are stored in an SQLite database.
+Ethereum Hunter sets up an Express server to interact with Ethereum transactions using the Alchemy SDK. It provides endpoints to execute scripts and fetch transaction details from the Ethereum blockchain, including internal transactions. Results are stored in an SQLite database.
 
 ## Setup
 
