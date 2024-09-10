@@ -44,6 +44,11 @@ Ethereum Hunter sets up an Express server to interact with Ethereum transactions
 - internalValue: Text (Internal transaction value in Ether, nullable)
 - internalGasUsed: Integer (Internal transaction gas used, nullable)
 
+## Error Handling
+- Error Handling in Routes: Ensures that errors in route handlers are passed to the centralized error handler. This approach maintains a clean separation of concerns and leverages the centralized error handler for consistency.
+- Centralized Error Handling Middleware: Provides a centralized location to handle errors and format error responses consistently. It ensures that all errors, whether from routes or async operations, are caught and managed in one place, improving maintainability and debugging. Including the stack trace in development helps in debugging, while it is omitted in production for security reasons.
+- Enhanced Error Handling in extractTransactionDetails: Provides detailed error logging and throws a new error with a clear message, improving the ability to trace and understand the cause of failures.
+- Enhanced Error Handling in saveToDatabase: Improves robustness in database operations by handling errors during table creation, data insertion, transaction management, and database closure. This ensures any issues are logged and properly handled, maintaining data integrity and providing useful error information.
 ## Notes
 
 - Ensure the Tracker.mjs script is in the same directory as your entry file.
