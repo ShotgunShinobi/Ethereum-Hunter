@@ -13,7 +13,7 @@ Ethereum Hunter sets up an Express server to interact with Ethereum transactions
 
   ```npm install express body-parser alchemy-sdk bignumber.js sqlite3 ```
 
-- **Alchemy API Key**: Obtain an API key from Alchemy (a free tier key is sufficient for testing and basic usage).
+- **Alchemy API Key**: Obtain an API key from Alchemy (a free-tier key is sufficient for testing and basic usage).
 
 ### Configuration
 
